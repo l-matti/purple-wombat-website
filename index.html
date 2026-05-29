@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Purple Wombat — From Country. For Country.</title>
+  <meta name="description" content="Aboriginal-led advisory services for NSW native title settlement, trust establishment, and community governance.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,300;1,500&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bush-green: #2D5016;
+      --eucalyptus: #4A7C3F;
+      --warm-stone: #F5F0E8;
+      --ochre: #C8860A;
+      --bark: #6B4C2A;
+      --wombat-purple: #5B3A8C;
+      --deep-earth: #1A1A12;
+      --warm-mid: #4A4A3A;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Inter', -apple-system, Helvetica Neue, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--warm-stone);
+      color: var(--deep-earth);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; height: auto; display: block; }
+    p { line-height: 1.7; }
+
+    /* NAV */
+    .site-nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: var(--bush-green);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px; height: 72px;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 14px;
+      color: var(--warm-stone); text-decoration: none;
+    }
+    .nav-wombat { width: 42px; height: 28px; color: var(--wombat-purple); }
+    .nav-brand-name {
+      font-family: var(--font-display); font-size: 22px; font-weight: 500;
+      color: var(--warm-stone); line-height: 1;
+    }
+    .nav-brand-sub {
+      font-size: 9px; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--ochre); line-height: 1; margin-top: 5px;
+    }
+    .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
+    .nav-links a {
+      color: rgba(245,240,232,0.8); font-size: 12px; font-weight: 600;
+      letter-spacing: 0.07em; text-transform: uppercase; text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--ochre); }
+    .nav-links a.active { color: var(--warm-stone); }
+    .nav-cta {
+      background: var(--ochre) !important; color: var(--deep-earth) !important;
+      padding: 10px 22px; font-weight: 700 !important; letter-spacing: 0.05em !important;
+    }
+    .nav-cta:hover { background: #d99510 !important; color: var(--deep-earth) !important; }
+    .nav-toggle {
+      display: none; background: none; border: none; cursor: pointer; padding: 8px;
+      color: var(--warm-stone);
+    }
+    @media (max-width: 900px) {
+      .site-nav { padding: 0 24px; }
+      .nav-links { display: none; }
+      .nav-toggle { display: block; }
+      .nav-links.open {
+        display: flex; flex-direction: column; position: fixed;
+        top: 72px; left: 0; right: 0; background: var(--bush-green);
+        padding: 24px; gap: 20px;
+      }
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh; display: flex; align-items: flex-end;
+      padding: 72px 0 0; position: relative; overflow: hidden;
+      background: linear-gradient(rgba(26,26,18,0.52), rgba(26,26,18,0.58)),
+                  url('Images/hero-home.png') center/cover no-repeat;
+    }
+    .hero-bg { position: absolute; inset: 0; overflow: hidden; display: none; }
+    .hero-content {
+      position: relative; z-index: 2; padding: 0 48px 100px;
+      max-width: 1240px; width: 100%;
+    }
+    .hero-label {
+      display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: var(--ochre); margin-bottom: 28px;
+    }
+    .hero-heading {
+      font-family: var(--font-display); font-size: clamp(64px, 10vw, 128px);
+      font-weight: 300; line-height: 1.0; color: var(--warm-stone);
+      letter-spacing: -0.02em; margin-bottom: 40px;
+    }
+    .hero-heading em { font-style: italic; color: var(--ochre); }
+    .hero-desc {
+      font-size: 18px; line-height: 1.65; color: rgba(245,240,232,0.78);
+      max-width: 560px; margin-bottom: 52px;
+    }
+    .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn {
+      display: inline-block; padding: 16px 32px; font-family: var(--font-body);
+      font-size: 13px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase;
+      border: 2px solid transparent; transition: all 0.25s ease; cursor: pointer;
+      text-decoration: none;
+    }
+    .btn-primary { background: var(--ochre); color: var(--deep-earth); border-color: var(--ochre); }
+    .btn-primary:hover { background: #d99510; border-color: #d99510; }
+    .btn-ghost { background: transparent; color: var(--warm-stone); border-color: rgba(245,240,232,0.45); }
+    .btn-ghost:hover { border-color: var(--warm-stone); }
+    .btn-dark { background: var(--deep-earth); color: var(--warm-stone); border-color: var(--deep-earth); }
+    .btn-dark:hover { background: #2d2d20; }
+    .btn-outline-green { background: transparent; color: var(--bush-green); border-color: var(--bush-green); }
+    .btn-outline-green:hover { background: var(--bush-green); color: var(--warm-stone); }
+
+    .scroll-hint {
+      position: absolute; bottom: 32px; right: 48px; z-index: 3;
+      display: flex; align-items: center; gap: 12px;
+      color: rgba(245,240,232,0.45); font-size: 11px; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+    }
+    .scroll-line { width: 48px; height: 1px; background: rgba(245,240,232,0.35); }
+
+    /* CONTAINER */
+    .container { max-width: 1240px; margin: 0 auto; padding: 0 48px; }
+    @media (max-width: 768px) { .container { padding: 0 24px; } }
+
+    /* SECTIONS */
+    .section { padding: 100px 0; }
+    .section-dark { background: var(--deep-earth); color: var(--warm-stone); }
+    .section-green { background: var(--bush-green); color: var(--warm-stone); }
+    .section-mid { background: #E8E2D5; }
+    .section-label {
+      display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--ochre); margin-bottom: 16px;
+    }
+    .section-label-light { color: var(--eucalyptus); }
+    .section-heading {
+      font-family: var(--font-display); font-size: clamp(32px, 5vw, 54px);
+      font-weight: 500; line-height: 1.1; margin-bottom: 24px;
+    }
+    .section-heading-light { color: var(--warm-stone); }
+    .divider { width: 56px; height: 3px; background: var(--ochre); margin: 24px 0; }
+
+    /* INTRO */
+    .intro-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start;
+    }
+    .intro-stat-row {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 60px;
+    }
+    .stat-block { background: var(--deep-earth); padding: 32px 24px; }
+    .stat-num {
+      font-family: var(--font-display); font-size: clamp(40px, 5vw, 64px);
+      font-weight: 300; color: var(--ochre); line-height: 1; margin-bottom: 8px;
+    }
+    .stat-lbl { font-size: 12px; font-weight: 600; color: rgba(245,240,232,0.65); letter-spacing: 0.05em; text-transform: uppercase; }
+    @media (max-width: 900px) {
+      .intro-grid { grid-template-columns: 1fr; gap: 40px; }
+      .intro-stat-row { grid-template-columns: 1fr; }
+    }
+
+    /* PILLARS */
+    .pillars-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; margin-top: 56px; }
+    .pillar {
+      padding: 48px 40px; background: rgba(255,255,255,0.04);
+      border-top: 3px solid var(--ochre);
+    }
+    .pillar:nth-child(2) { border-top-color: var(--eucalyptus); }
+    .pillar:nth-child(3) { border-top-color: var(--wombat-purple); }
+    .pillar-num {
+      font-family: var(--font-display); font-size: 52px; font-weight: 300;
+      color: var(--ochre); line-height: 0.9; margin-bottom: 20px;
+    }
+    .pillar:nth-child(2) .pillar-num { color: var(--eucalyptus); }
+    .pillar:nth-child(3) .pillar-num { color: var(--wombat-purple); }
+    .pillar-title { font-size: 18px; font-weight: 600; color: var(--warm-stone); margin-bottom: 16px; line-height: 1.3; }
+    .pillar-body { font-size: 14px; line-height: 1.7; color: rgba(245,240,232,0.68); }
+    @media (max-width: 900px) { .pillars-grid { grid-template-columns: 1fr; } }
+
+    /* POLICY TEASER */
+    .policy-teaser {
+      background: var(--deep-earth); border-left: 4px solid var(--ochre);
+      padding: 52px 48px; margin: 60px 0 0;
+    }
+    .policy-teaser blockquote {
+      font-family: var(--font-display); font-size: clamp(22px, 3vw, 34px);
+      font-weight: 300; font-style: italic; color: var(--warm-stone); line-height: 1.45;
+      max-width: 760px; margin-bottom: 24px;
+    }
+    .policy-teaser-link {
+      font-size: 13px; font-weight: 700; letter-spacing: 0.06em;
+      text-transform: uppercase; color: var(--ochre); text-decoration: none;
+    }
+    .policy-teaser-link::after { content: ' →'; }
+    .policy-teaser-link:hover { text-decoration: underline; }
+
+    /* SERVICES PREVIEW */
+    .services-preview { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; }
+    .svc-card { padding: 40px 36px; background: var(--warm-stone); border-top: 3px solid var(--bush-green); }
+    .svc-num { font-family: var(--font-display); font-size: 44px; font-weight: 300; color: var(--ochre); line-height: 1; margin-bottom: 16px; }
+    .svc-title { font-size: 17px; font-weight: 600; color: var(--deep-earth); margin-bottom: 12px; line-height: 1.3; }
+    .svc-body { font-size: 14px; line-height: 1.65; color: var(--warm-mid); }
+    @media (max-width: 900px) { .services-preview { grid-template-columns: 1fr; } }
+
+    /* HIGHLIGHT BAR */
+    .highlight-bar { background: var(--ochre); padding: 48px 0; }
+    .highlight-bar p {
+      font-family: var(--font-display); font-size: clamp(22px, 3vw, 34px);
+      font-weight: 500; color: var(--deep-earth); line-height: 1.35; max-width: 920px;
+    }
+
+    /* CTA SECTION */
+    .cta-grid { display: grid; grid-template-columns: 1fr auto; gap: 80px; align-items: center; }
+    .cta-title { font-family: var(--font-display); font-size: clamp(32px, 5vw, 52px); font-weight: 300; color: var(--warm-stone); line-height: 1.2; margin-bottom: 16px; }
+    .cta-body { font-size: 16px; color: rgba(245,240,232,0.72); max-width: 480px; }
+    @media (max-width: 900px) { .cta-grid { grid-template-columns: 1fr; gap: 40px; } }
+
+    /* FOOTER */
+    .site-footer { background: var(--deep-earth); color: var(--warm-stone); padding: 80px 0 40px; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; margin-bottom: 60px; }
+    @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; } }
+    @media (max-width: 600px) { .footer-grid { grid-template-columns: 1fr; } }
+    .footer-brand-name { font-family: var(--font-display); font-size: 28px; font-weight: 500; color: var(--warm-stone); margin-bottom: 12px; }
+    .footer-tagline { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ochre); margin-bottom: 16px; }
+    .footer-desc { font-size: 14px; line-height: 1.65; color: rgba(245,240,232,0.55); max-width: 300px; }
+    .footer-col-title { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ochre); margin-bottom: 20px; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .footer-links a { font-size: 14px; color: rgba(245,240,232,0.6); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--warm-stone); }
+    .footer-bottom {
+      border-top: 1px solid rgba(245,240,232,0.1); padding-top: 32px;
+      display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; flex-wrap: wrap;
+    }
+    .footer-acknowledgement { font-size: 13px; line-height: 1.65; color: rgba(245,240,232,0.45); max-width: 600px; }
+    .footer-copy { font-size: 12px; color: rgba(245,240,232,0.3); white-space: nowrap; padding-top: 4px; }
+
+    /* ANIMATIONS */
+    .fade-up { opacity: 0; transform: translateY(36px); transition: opacity 0.75s ease, transform 0.75s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .fade-in { opacity: 0; transition: opacity 0.75s ease; }
+    .fade-in.visible { opacity: 1; }
+    .d1 { transition-delay: 0.1s; } .d2 { transition-delay: 0.2s; }
+    .d3 { transition-delay: 0.3s; } .d4 { transition-delay: 0.4s; } .d5 { transition-delay: 0.5s; }
+
+    /* ABSTRACT LANDSCAPE SHAPES */
+    .hero-shape-1 { position: absolute; bottom: -10%; right: -5%; width: 55vw; height: 55vw; background: var(--eucalyptus); border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; opacity: 0.12; }
+    .hero-shape-2 { position: absolute; top: 15%; left: -10%; width: 40vw; height: 40vw; background: var(--ochre); border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%; opacity: 0.06; }
+    .hero-horizon { position: absolute; bottom: 0; left: 0; right: 0; opacity: 0.25; }
+    .hero-dots-grid {
+      position: absolute; top: 30%; right: 5%; display: grid; grid-template-columns: repeat(8, 12px);
+      gap: 18px; opacity: 0.12;
+    }
+    .hero-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--ochre); }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="site-nav">
+    <a href="index.html" class="nav-logo">
+      <svg class="nav-wombat" viewBox="0 0 48 32" fill="none" stroke="white" stroke-width="1" stroke-linejoin="round">
+        <ellipse cx="20" cy="22" rx="18" ry="10" fill="currentColor"/>
+        <path d="M34 14 Q28 10 26 14 L26 22 L42 22 L44 18 Q46 14 42 12 Q38 10 34 14Z" fill="currentColor"/>
+        <path d="M30 14 Q30 8 33 7 Q36 7 36 13Z" fill="currentColor"/>
+        <path d="M37 13 Q38 8 41 8 Q44 9 43 14Z" fill="currentColor"/>
+        <rect x="8" y="28" width="6" height="4" rx="2" fill="currentColor"/>
+        <rect x="18" y="29" width="6" height="3" rx="1.5" fill="currentColor"/>
+        <rect x="30" y="28" width="6" height="4" rx="2" fill="currentColor"/>
+      </svg>
+      <div>
+        <div class="nav-brand-name">Purple Wombat</div>
+        <div class="nav-brand-sub">Aboriginal Led &amp; Owned</div>
+      </div>
+    </a>
+    <button class="nav-toggle" onclick="this.nextElementSibling.classList.toggle('open')" aria-label="Menu">
+      <svg width="22" height="16" viewBox="0 0 22 16" fill="none"><rect width="22" height="2" fill="currentColor"/><rect y="7" width="22" height="2" fill="currentColor"/><rect y="14" width="22" height="2" fill="currentColor"/></svg>
+    </button>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li><a href="policy.html">The Policy</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="team.html">Our Team</a></li>
+      <li><a href="contact.html" class="nav-cta">Get in Touch</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg">
+      <div class="hero-shape-1"></div>
+      <div class="hero-shape-2"></div>
+      <div class="hero-dots-grid" id="heroDots"></div>
+      <svg class="hero-horizon" viewBox="0 0 1440 200" preserveAspectRatio="none">
+        <path d="M0,120 C240,80 360,160 600,100 C840,40 960,140 1200,90 C1320,65 1400,110 1440,100 L1440,200 L0,200Z" fill="#4A7C3F"/>
+        <path d="M0,150 C200,110 400,170 700,130 C900,100 1100,160 1440,140 L1440,200 L0,200Z" fill="#2D5016" opacity="0.8"/>
+      </svg>
+    </div>
+    <div class="hero-content">
+      <span class="hero-label">Aboriginal Led &amp; Owned · NSW Native Title Advisory</span>
+      <h1 class="hero-heading">From Country.<br><em>For Country.</em></h1>
+      <p class="hero-desc">Purple Wombat walks alongside Aboriginal communities through the NSW native title settlement process — from understanding your rights, to establishing trust structures, to building the governance that sustains your RNTBC for generations.</p>
+      <div class="hero-actions">
+        <a href="policy.html" class="btn btn-primary">Understand the New Policy</a>
+        <a href="contact.html" class="btn btn-ghost">Talk to Us</a>
+      </div>
+    </div>
+    <div class="scroll-hint">
+      <span class="scroll-line"></span>
+      <span>Scroll</span>
+    </div>
+  </section>
+
+  <!-- INTRO -->
+  <section class="section">
+    <div class="container">
+      <div class="intro-grid">
+        <div>
+          <span class="section-label">Who We Are</span>
+          <h2 class="section-heading">A trusted partner for a once&#8209;in&#8209;a&#8209;generation moment.</h2>
+          <div class="divider"></div>
+          <p style="color: var(--warm-mid); font-size: 16px; margin-bottom: 20px;">The NSW Government's proposed new native title policy — released January 2026 — changes everything. For the first time, Aboriginal communities can settle native title claims and receive compensation <strong>without going to court</strong>.</p>
+          <p style="color: var(--warm-mid); font-size: 16px; margin-bottom: 32px;">Compensation is paid as a lump sum into a community-controlled charitable trust, calculated to sustain your RNTBC in perpetuity. This is the moment communities have been waiting for. Getting the trust structure, investment strategy and governance right from the start will determine whether these funds last for generations — or don't.</p>
+          <a href="policy.html" class="btn btn-outline-green">Read About the Policy</a>
+        </div>
+        <div>
+          <p style="font-family: var(--font-display); font-size: clamp(20px, 2.5vw, 28px); font-style: italic; font-weight: 300; color: var(--bush-green); line-height: 1.5; margin-bottom: 40px; padding-left: 32px; border-left: 4px solid var(--ochre);">"Communities make the best decisions for their own futures. Our job is to make sure they have the knowledge, structure and confidence to do exactly that."</p>
+          <p style="color: var(--warm-mid); font-size: 15px; line-height: 1.7; margin-bottom: 20px;">Purple Wombat is Aboriginal-led and Aboriginal-owned. We bring cultural authority and genuine community knowledge together with deep expertise in trust law, investment governance, financial management and community development.</p>
+          <p style="color: var(--warm-mid); font-size: 15px; line-height: 1.7;">We are not connected to trustees, fund managers or legal firms who benefit from your decisions. Our only interest is yours.</p>
+        </div>
+      </div>
+      <div class="intro-stat-row">
+        <div class="stat-block fade-up">
+          <div class="stat-num">3</div>
+          <div class="stat-lbl">Policy Elements to Navigate</div>
+        </div>
+        <div class="stat-block fade-up d2">
+          <div class="stat-num">∞</div>
+          <div class="stat-lbl">Generations the Trust Must Sustain</div>
+        </div>
+        <div class="stat-block fade-up d3">
+          <div class="stat-num">7</div>
+          <div class="stat-lbl">Advisory Services We Offer</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PILLARS -->
+  <section class="section section-dark">
+    <div class="container">
+      <span class="section-label">Our Foundations</span>
+      <h2 class="section-heading section-heading-light" style="max-width: 640px;">What we stand for — and why it matters.</h2>
+      <div class="pillars-grid">
+        <div class="pillar fade-up">
+          <div class="pillar-num">01</div>
+          <h3 class="pillar-title">Self-Determination</h3>
+          <p class="pillar-body">Communities know what's best for their own people and Country. The evidence is clear — when Aboriginal communities make their own decisions about their funds and futures, they out-perform externally managed approaches every time. Purple Wombat exists to ensure communities have the knowledge and capacity to exercise that self-determination effectively.</p>
+        </div>
+        <div class="pillar fade-up d2">
+          <div class="pillar-num">02</div>
+          <h3 class="pillar-title">Intergenerational Thinking</h3>
+          <p class="pillar-body">The compensation trusts are designed to run in perpetuity — to sustain the RNTBC and fund community aspirations not just today, but for the next generation and the one after that. We help communities think in that timeframe from day one. The decisions made now about trust structure and investment policy will still be felt by your grandchildren.</p>
+        </div>
+        <div class="pillar fade-up d3">
+          <div class="pillar-num">03</div>
+          <h3 class="pillar-title">Cultural Authority and Trust</h3>
+          <p class="pillar-body">Purple Wombat is Aboriginal-owned and led. We bring cultural authority to this work — not just technical expertise. Communities don't have to translate their world for us. We understand it. We engage in a trauma-informed, culturally appropriate way — working at the community's pace, in their language, on their terms.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- POLICY TEASER -->
+  <section class="section">
+    <div class="container">
+      <span class="section-label">NSW Government Policy 2026</span>
+      <h2 class="section-heading">The rules have changed.<br>Here's what it means for your community.</h2>
+      <div class="divider"></div>
+      <p style="color: var(--warm-mid); font-size: 16px; max-width: 660px; margin-bottom: 48px;">The NSW Government has proposed a landmark new policy for settling native title claims and compensation — without litigation, without years of court battles, without the trauma that process inflicts. For the first time, communities can settle on their own terms.</p>
+      <div class="policy-teaser">
+        <blockquote>"You have rights. The new NSW policy means you don't have to go through years of costly court battles to be recognised and compensated. But the decisions you make now — about your trust, your investments, your governance — will affect your community for generations."</blockquote>
+        <a href="policy.html" class="policy-teaser-link">Understand the full policy</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES PREVIEW -->
+  <section class="section section-mid">
+    <div class="container">
+      <span class="section-label">What We Do</span>
+      <h2 class="section-heading" style="margin-bottom: 48px;">Seven ways we walk alongside you.</h2>
+      <div class="services-preview">
+        <div class="svc-card fade-up">
+          <div class="svc-num">01</div>
+          <h3 class="svc-title">Native Title Policy Navigation</h3>
+          <p class="svc-body">Plain-language briefings, community consultations, and support in understanding the NSW Government's new policy — so your community can make informed decisions about opting in.</p>
+        </div>
+        <div class="svc-card fade-up d2">
+          <div class="svc-num">02</div>
+          <h3 class="svc-title">Trust Establishment</h3>
+          <p class="svc-body">End-to-end support to set up a legally compliant charitable trust — from drafting the Trust Deed, to ACNC registration, to appointing and briefing professional trustees.</p>
+        </div>
+        <div class="svc-card fade-up d3">
+          <div class="svc-num">03</div>
+          <h3 class="svc-title">Investment Policy &amp; Fund Management Advisory</h3>
+          <p class="svc-body">Developing an Investment Policy Statement, asset allocation strategy, and oversight frameworks to ensure your trust grows at or above inflation — for perpetuity.</p>
+        </div>
+      </div>
+      <div style="margin-top: 32px; text-align: center;">
+        <a href="services.html" class="btn btn-dark">See All Seven Services</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- HIGHLIGHT BAR -->
+  <div class="highlight-bar">
+    <div class="container">
+      <p>"This moment won't wait. The NSW Government's new policy is a once-in-a-generation opportunity for communities. Getting the trust structure, investment approach and governance right from the start will determine whether compensation funds last for generations — or don't."</p>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <section class="section section-green">
+    <div class="container">
+      <div class="cta-grid">
+        <div>
+          <span class="section-label section-label-light">Work with Us</span>
+          <h2 class="cta-title">Ready to understand your rights and your options?</h2>
+          <p class="cta-body">Whether you're at the beginning of the process or already in negotiations, Purple Wombat can help. We work with Aboriginal communities and RNTBCs across NSW.</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+          <a href="contact.html" class="btn btn-primary">Get in Touch</a>
+          <a href="about.html" class="btn btn-ghost">About Purple Wombat</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand-name">Purple Wombat</div>
+          <div class="footer-tagline">From Country. For Country.</div>
+          <p class="footer-desc">Aboriginal-led and Aboriginal-owned advisory services for NSW native title settlement, trust establishment, and community governance.</p>
+        </div>
+        <div>
+          <div class="footer-col-title">Navigate</div>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="policy.html">The Policy</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="team.html">Our Team</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Services</div>
+          <ul class="footer-links">
+            <li><a href="services.html">Policy Navigation</a></li>
+            <li><a href="services.html">Trust Establishment</a></li>
+            <li><a href="services.html">Investment Advisory</a></li>
+            <li><a href="services.html">RNTBC Governance</a></li>
+            <li><a href="services.html">Community Distribution</a></li>
+            <li><a href="services.html">ILUA Support</a></li>
+            <li><a href="services.html">Compensation Review</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Contact</div>
+          <ul class="footer-links">
+            <li><a href="contact.html">Talk to Us</a></li>
+            <li><a href="mailto:hello@purplewombat.com.au">hello@purplewombat.com.au</a></li>
+          </ul>
+          <div style="margin-top: 32px;">
+            <div class="footer-col-title">Proud to be</div>
+            <p style="font-size: 14px; color: rgba(245,240,232,0.6); line-height: 1.5;">Aboriginal Led<br>Aboriginal Owned<br>NSW Based</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-acknowledgement">Purple Wombat acknowledges the Traditional Custodians of Country throughout NSW and recognises their continuing connection to land, water and community. We pay our respects to Elders past, present and emerging.</p>
+        <span class="footer-copy">© Purple Wombat 2026</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Dot grid
+    const grid = document.getElementById('heroDots');
+    if (grid) { for (let i = 0; i < 64; i++) { const d = document.createElement('div'); d.className = 'hero-dot'; grid.appendChild(d); } }
+
+    // Scroll animations
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.fade-up, .fade-in').forEach(el => observer.observe(el));
+
+    // Mobile nav
+    document.querySelector('.nav-toggle').addEventListener('click', function() {
+      document.querySelector('.nav-links').classList.toggle('open');
+    });
+  </script>
+</body>
+</html>

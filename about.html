@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Purple Wombat — From Country. For Country.</title>
+  <meta name="description" content="Aboriginal-led and owned. Purple Wombat exists to support NSW Aboriginal communities through the native title settlement and trust management process.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,300;1,500&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bush-green: #2D5016; --eucalyptus: #4A7C3F; --warm-stone: #F5F0E8;
+      --ochre: #C8860A; --bark: #6B4C2A; --wombat-purple: #5B3A8C;
+      --deep-earth: #1A1A12; --warm-mid: #4A4A3A;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Inter', -apple-system, Helvetica Neue, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--warm-stone); color: var(--deep-earth); font-family: var(--font-body); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    p { line-height: 1.7; }
+
+    /* NAV */
+    .site-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(--bush-green); display: flex; align-items: center; justify-content: space-between; padding: 0 48px; height: 72px; }
+    .nav-logo { display: flex; align-items: center; gap: 14px; color: var(--warm-stone); }
+    .nav-wombat { width: 42px; height: 28px; color: var(--wombat-purple); }
+    .nav-brand-name { font-family: var(--font-display); font-size: 22px; font-weight: 500; color: var(--warm-stone); line-height: 1; }
+    .nav-brand-sub { font-size: 9px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ochre); line-height: 1; margin-top: 5px; }
+    .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
+    .nav-links a { color: rgba(245,240,232,0.8); font-size: 12px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--ochre); }
+    .nav-links a.active { color: var(--warm-stone); }
+    .nav-cta { background: var(--ochre) !important; color: var(--deep-earth) !important; padding: 10px 22px; font-weight: 700 !important; }
+    .nav-cta:hover { background: #d99510 !important; }
+    .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; color: var(--warm-stone); }
+    @media (max-width: 900px) { .site-nav { padding: 0 24px; } .nav-links { display: none; } .nav-toggle { display: block; } .nav-links.open { display: flex; flex-direction: column; position: fixed; top: 72px; left: 0; right: 0; background: var(--bush-green); padding: 24px; gap: 20px; } }
+
+    /* LAYOUT */
+    .container { max-width: 1240px; margin: 0 auto; padding: 0 48px; }
+    @media (max-width: 768px) { .container { padding: 0 24px; } }
+    .section { padding: 100px 0; }
+    .section-dark { background: var(--deep-earth); color: var(--warm-stone); }
+    .section-green { background: var(--bush-green); color: var(--warm-stone); }
+    .section-mid { background: #E8E2D5; }
+
+    /* HERO */
+    .page-hero { min-height: 68vh; display: flex; align-items: flex-end; padding: 72px 0 0; background: linear-gradient(rgba(26,26,18,0.52), rgba(26,26,18,0.58)), url('Images/hero-about.png') center top/cover no-repeat; position: relative; overflow: hidden; }
+    .page-hero-content { padding: 0 48px 80px; max-width: 1240px; width: 100%; position: relative; z-index: 2; }
+    .page-hero-label { display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ochre); margin-bottom: 24px; }
+    .page-hero-heading { font-family: var(--font-display); font-size: clamp(48px, 8vw, 96px); font-weight: 300; line-height: 1.0; color: var(--warm-stone); letter-spacing: -0.02em; margin-bottom: 28px; }
+    .page-hero-heading em { font-style: italic; color: var(--ochre); }
+    .page-hero-desc { font-size: 18px; line-height: 1.65; color: rgba(245,240,232,0.75); max-width: 640px; }
+    .hero-shape-1, .hero-shape-2 { display: none; }
+
+    /* TYPOGRAPHY */
+    .section-label { display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ochre); margin-bottom: 16px; }
+    .section-label-light { color: var(--eucalyptus); }
+    .section-heading { font-family: var(--font-display); font-size: clamp(30px, 4.5vw, 52px); font-weight: 500; line-height: 1.12; margin-bottom: 24px; }
+    .divider { width: 56px; height: 3px; background: var(--ochre); margin: 24px 0; }
+
+    /* BUTTONS */
+    .btn { display: inline-block; padding: 14px 28px; font-family: var(--font-body); font-size: 13px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; border: 2px solid transparent; transition: all 0.25s ease; }
+    .btn-primary { background: var(--ochre); color: var(--deep-earth); border-color: var(--ochre); }
+    .btn-primary:hover { background: #d99510; }
+    .btn-ghost { background: transparent; color: var(--warm-stone); border-color: rgba(245,240,232,0.45); }
+    .btn-ghost:hover { border-color: var(--warm-stone); }
+    .btn-outline-green { background: transparent; color: var(--bush-green); border-color: var(--bush-green); }
+    .btn-outline-green:hover { background: var(--bush-green); color: var(--warm-stone); }
+
+    /* MISSION GRID */
+    .mission-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    @media (max-width: 900px) { .mission-grid { grid-template-columns: 1fr; gap: 48px; } }
+
+    /* VISION BOX */
+    .vision-box { background: var(--deep-earth); padding: 48px; }
+    .vision-label { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ochre); margin-bottom: 16px; display: block; }
+    .vision-text { font-family: var(--font-display); font-size: clamp(20px, 2.5vw, 28px); font-weight: 300; font-style: italic; color: var(--warm-stone); line-height: 1.45; }
+
+    /* VALUES */
+    .value-item { padding: 40px 0; border-bottom: 1px solid rgba(26,26,18,0.1); display: grid; grid-template-columns: 220px 1fr; gap: 48px; align-items: start; }
+    .value-item:last-child { border-bottom: none; }
+    @media (max-width: 768px) { .value-item { grid-template-columns: 1fr; gap: 16px; } }
+    .value-name { font-family: var(--font-display); font-size: 30px; font-weight: 500; color: var(--bush-green); line-height: 1.2; }
+    .value-desc { font-size: 15px; line-height: 1.75; color: var(--warm-mid); max-width: 60ch; }
+
+    /* MESSAGE PILLARS */
+    .message-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; margin-top: 48px; }
+    @media (max-width: 768px) { .message-grid { grid-template-columns: 1fr; } }
+    .message-block { background: rgba(255,255,255,0.04); padding: 44px 40px; }
+    .message-block:hover { background: rgba(255,255,255,0.06); }
+    .message-num { font-family: var(--font-display); font-size: 48px; font-weight: 300; color: var(--ochre); line-height: 0.9; margin-bottom: 16px; }
+    .message-title { font-size: 16px; font-weight: 700; color: var(--warm-stone); margin-bottom: 14px; }
+    .message-body { font-size: 14px; line-height: 1.72; color: rgba(245,240,232,0.65); }
+
+    /* INDEPENDENCE */
+    .independence-bar { background: var(--ochre); padding: 56px 0; }
+    .independence-bar p { font-family: var(--font-display); font-size: clamp(20px, 2.8vw, 32px); font-weight: 500; color: var(--deep-earth); line-height: 1.35; max-width: 920px; }
+
+    /* STAKEHOLDERS */
+    .stakeholder-table { width: 100%; border-collapse: collapse; margin-top: 40px; }
+    .stakeholder-table th { background: var(--bush-green); color: var(--ochre); font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 14px 20px; text-align: left; }
+    .stakeholder-table td { padding: 16px 20px; font-size: 14px; line-height: 1.55; border-bottom: 1px solid rgba(26,26,18,0.08); color: var(--warm-mid); vertical-align: top; }
+    .stakeholder-table tr:nth-child(even) td { background: rgba(26,26,18,0.03); }
+    .stakeholder-table td:first-child { font-weight: 600; color: var(--deep-earth); white-space: nowrap; }
+
+    /* GUARDRAILS */
+    .guardrail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; margin-top: 48px; }
+    @media (max-width: 768px) { .guardrail-grid { grid-template-columns: 1fr; } }
+    .guardrail-block { padding: 36px; background: rgba(255,255,255,0.025); border-top: 2px solid rgba(200,134,10,0.3); }
+    .guardrail-title { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--ochre); margin-bottom: 16px; }
+    .guardrail-body { font-size: 14px; line-height: 1.7; color: rgba(245,240,232,0.65); }
+
+    /* CTA */
+    .cta-section { background: var(--deep-earth); padding: 100px 0; }
+    .cta-inner { display: grid; grid-template-columns: 1fr auto; gap: 80px; align-items: center; }
+    @media (max-width: 900px) { .cta-inner { grid-template-columns: 1fr; gap: 40px; } }
+
+    /* FOOTER */
+    .site-footer { background: var(--deep-earth); color: var(--warm-stone); padding: 80px 0 40px; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; margin-bottom: 60px; }
+    @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; } }
+    @media (max-width: 600px) { .footer-grid { grid-template-columns: 1fr; } }
+    .footer-brand-name { font-family: var(--font-display); font-size: 28px; font-weight: 500; color: var(--warm-stone); margin-bottom: 12px; }
+    .footer-tagline { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ochre); margin-bottom: 16px; }
+    .footer-desc { font-size: 14px; line-height: 1.65; color: rgba(245,240,232,0.55); max-width: 300px; }
+    .footer-col-title { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ochre); margin-bottom: 20px; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .footer-links a { font-size: 14px; color: rgba(245,240,232,0.6); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--warm-stone); }
+    .footer-bottom { border-top: 1px solid rgba(245,240,232,0.1); padding-top: 32px; display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; flex-wrap: wrap; }
+    .footer-acknowledgement { font-size: 13px; line-height: 1.65; color: rgba(245,240,232,0.45); max-width: 600px; }
+    .footer-copy { font-size: 12px; color: rgba(245,240,232,0.3); }
+
+    /* ANIMATIONS */
+    .fade-up { opacity: 0; transform: translateY(32px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .d1 { transition-delay: 0.1s; } .d2 { transition-delay: 0.2s; } .d3 { transition-delay: 0.3s; } .d4 { transition-delay: 0.4s; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="site-nav">
+    <a href="index.html" class="nav-logo">
+      <svg class="nav-wombat" viewBox="0 0 48 32" fill="none" stroke="white" stroke-width="1" stroke-linejoin="round">
+        <ellipse cx="20" cy="22" rx="18" ry="10" fill="currentColor"/>
+        <path d="M34 14 Q28 10 26 14 L26 22 L42 22 L44 18 Q46 14 42 12 Q38 10 34 14Z" fill="currentColor"/>
+        <path d="M30 14 Q30 8 33 7 Q36 7 36 13Z" fill="currentColor"/>
+        <path d="M37 13 Q38 8 41 8 Q44 9 43 14Z" fill="currentColor"/>
+        <rect x="8" y="28" width="6" height="4" rx="2" fill="currentColor"/>
+        <rect x="18" y="29" width="6" height="3" rx="1.5" fill="currentColor"/>
+        <rect x="30" y="28" width="6" height="4" rx="2" fill="currentColor"/>
+      </svg>
+      <div>
+        <div class="nav-brand-name">Purple Wombat</div>
+        <div class="nav-brand-sub">Aboriginal Led &amp; Owned</div>
+      </div>
+    </a>
+    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">
+      <svg width="22" height="16" viewBox="0 0 22 16" fill="none"><rect width="22" height="2" fill="currentColor"/><rect y="7" width="22" height="2" fill="currentColor"/><rect y="14" width="22" height="2" fill="currentColor"/></svg>
+    </button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="policy.html">The Policy</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="team.html">Our Team</a></li>
+      <li><a href="contact.html" class="nav-cta">Get in Touch</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="page-hero">
+    <div class="hero-shape-1"></div>
+    <div class="hero-shape-2"></div>
+    <div class="page-hero-content">
+      <span class="page-hero-label">Aboriginal Led · Aboriginal Owned · NSW</span>
+      <h1 class="page-hero-heading">This is Aboriginal-<br>led work.<br><em>Always has been.</em></h1>
+      <p class="page-hero-desc">Purple Wombat is not an outside consultant parachuting in with answers. We are a trusted partner — Aboriginal-owned — who brings deep community knowledge and the financial, legal and governance expertise communities need to make the most of a once-in-a-generation opportunity.</p>
+    </div>
+  </section>
+
+  <!-- MISSION -->
+  <section class="section">
+    <div class="container">
+      <div class="mission-grid">
+        <div>
+          <span class="section-label">Mission &amp; Vision</span>
+          <h2 class="section-heading">Empowering communities to own, govern and grow their futures.</h2>
+          <div class="divider"></div>
+          <p style="color: var(--warm-mid); font-size: 16px; margin-bottom: 20px;">Purple Wombat walks alongside Aboriginal communities through every step of the NSW native title settlement process — from understanding their rights, to establishing robust trust structures, to managing compensation funds for the benefit of current and future generations.</p>
+          <p style="color: var(--warm-mid); font-size: 16px; margin-bottom: 20px;">We are Aboriginal led, Aboriginal owned, and driven by the principle that communities know best. We combine deep cultural knowledge with technical expertise in trust law, investment governance, financial management and community development.</p>
+          <p style="color: var(--warm-mid); font-size: 16px; margin-bottom: 40px;">We are guided by the same principles that underpin the NSW Government's new policy: self-determination, equity, timeliness and intergenerational thinking — because we believe no community should have to choose between getting justice now and securing their children's futures.</p>
+          <a href="team.html" class="btn btn-outline-green">Meet Our Team</a>
+        </div>
+        <div>
+          <div class="vision-box" style="margin-bottom: 3px;">
+            <span class="vision-label">Our Vision</span>
+            <p class="vision-text">"Aboriginal communities across NSW empowered to own, govern and grow their futures — with Country, culture and self-determination at the centre of every decision."</p>
+          </div>
+          <div style="background: var(--ochre); padding: 40px;">
+            <span style="display: block; font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--deep-earth); margin-bottom: 14px;">Our Positioning</span>
+            <p style="font-family: var(--font-display); font-size: 22px; font-weight: 500; color: var(--deep-earth); line-height: 1.4;">Purple Wombat sits at the intersection of cultural authority and technical expertise.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES / PERSONALITY -->
+  <section class="section section-mid">
+    <div class="container">
+      <span class="section-label">Brand Personality</span>
+      <h2 class="section-heading" style="max-width: 600px;">Five traits that define who we are — and how we work.</h2>
+      <div class="divider"></div>
+      <div>
+        <div class="value-item fade-up">
+          <div class="value-name">Grounded</div>
+          <p class="value-desc">We are connected to Country, to community, and to the reality of what people are navigating. We don't overcomplicate, we don't use jargon to impress, and we don't lose sight of the people at the centre of the work. When we say we understand the weight of this process, we mean it — not as a service line, but as a lived truth.</p>
+        </div>
+        <div class="value-item fade-up">
+          <div class="value-name">Warm</div>
+          <p class="value-desc">We are approachable and human. Communities should feel safe with us — never judged, never rushed, never talked down to. We earn trust by showing up consistently and genuinely, at the community's pace and on the community's terms. That warmth is not a performance. It is who we are.</p>
+        </div>
+        <div class="value-item fade-up">
+          <div class="value-name">Confident</div>
+          <p class="value-desc">We know our field. We are clear and direct in what we say and what we recommend. We do not hedge for the sake of being polite, and we do not back down when we know something matters to a community. Confidence in our expertise is how we serve — not to assert authority, but to give communities the strongest possible advice.</p>
+        </div>
+        <div class="value-item fade-up">
+          <div class="value-name">Culturally Rooted</div>
+          <p class="value-desc">Aboriginal identity is not a decoration for Purple Wombat — it is foundational. Our leadership, our values, our ways of working, and our relationships with communities reflect genuine cultural authority. Communities don't have to translate their world for us. We already understand it, because we come from it.</p>
+        </div>
+        <div class="value-item fade-up">
+          <div class="value-name">Forward-Looking</div>
+          <p class="value-desc">We think in generations, not in quarters. The decisions communities make about their trusts today will shape their grandchildren's lives. We carry that responsibility with seriousness and optimism — because the opportunity this new policy creates, if handled well, can sustain communities in perpetuity.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CORE MESSAGES -->
+  <section class="section section-dark">
+    <div class="container">
+      <span class="section-label">What We Stand For</span>
+      <h2 class="section-heading" style="color: var(--warm-stone); max-width: 640px;">Five commitments that guide everything we do.</h2>
+      <div class="message-grid">
+        <div class="message-block fade-up">
+          <div class="message-num">01</div>
+          <h3 class="message-title">Self-determination works.</h3>
+          <p class="message-body">The evidence is clear — when Aboriginal communities make their own decisions about their funds and futures, they out-perform externally managed approaches. Purple Wombat exists to ensure communities have the knowledge and capacity to exercise that self-determination effectively.</p>
+        </div>
+        <div class="message-block fade-up d2">
+          <div class="message-num">02</div>
+          <h3 class="message-title">This moment won't wait.</h3>
+          <p class="message-body">The NSW Government's new policy is a once-in-a-generation opportunity. Getting the trust structure, investment approach and governance right from the start will determine whether compensation funds last for generations — or don't. The decisions made now matter.</p>
+        </div>
+        <div class="message-block fade-up d3">
+          <div class="message-num">03</div>
+          <h3 class="message-title">Cultural safety is non-negotiable.</h3>
+          <p class="message-body">Purple Wombat engages with communities in a trauma-informed, culturally appropriate way. We work at the community's pace, in their language, on their terms. Cultural safety is not a compliance checkbox — it is the foundation everything else is built on.</p>
+        </div>
+        <div class="message-block fade-up d4">
+          <div class="message-num">04</div>
+          <h3 class="message-title">Independent. Always.</h3>
+          <p class="message-body">Purple Wombat is not connected to trustees, fund managers or legal firms who benefit from your decisions. We receive no referral fees. Our only interest is the community's. When our advice might be uncomfortable for government or institutional partners, we give it anyway — because that's what communities deserve.</p>
+        </div>
+        <div class="message-block fade-up" style="transition-delay: 0.5s;">
+          <div class="message-num">05</div>
+          <h3 class="message-title">Building lasting capability.</h3>
+          <p class="message-body">Our goal is not to create dependency on Purple Wombat — it is to build the governance, financial and strategic capacity of each community and RNTBC so they can thrive independently. Success for us means the day communities no longer need us.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INDEPENDENCE -->
+  <div class="independence-bar">
+    <div class="container">
+      <p>"Purple Wombat is Aboriginal led and Aboriginal owned. We bring the cultural authority, the relationships and the technical expertise to help communities navigate one of the most significant policy changes in NSW native title history."</p>
+    </div>
+  </div>
+
+  <!-- STAKEHOLDERS -->
+  <section class="section">
+    <div class="container">
+      <span class="section-label">Our Ecosystem</span>
+      <h2 class="section-heading" style="max-width: 600px;">The system Purple Wombat operates within — and the relationships that matter.</h2>
+      <div class="divider"></div>
+      <p style="color: var(--warm-mid); font-size: 16px; max-width: 660px; margin-bottom: 0;">Understanding who's who in the native title process is half the battle. Purple Wombat helps communities navigate this ecosystem — knowing when to engage, who has authority, and where to push back.</p>
+      <table class="stakeholder-table">
+        <thead>
+          <tr><th>Stakeholder</th><th>Relationship to Communities</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>NSW Dept of Planning, Housing &amp; Infrastructure (DPHI)</td>
+            <td>Administers the native title policy; the counterparty in negotiations. Purple Wombat helps communities engage effectively with DPHI.</td>
+          </tr>
+          <tr>
+            <td>NSW Attorney General</td>
+            <td>Approves each compensation settlement and trust governance arrangements — an important approval milestone in the process.</td>
+          </tr>
+          <tr>
+            <td>National Native Title Tribunal</td>
+            <td>Registers ILUAs and plays a formal role in the settlement process. Purple Wombat explains what registration means and what it locks in.</td>
+          </tr>
+          <tr>
+            <td>Federal Court of Australia</td>
+            <td>Issues consent determinations. The Court's role is largely administrative under the new policy — it ratifies what communities and the Government have agreed through negotiation.</td>
+          </tr>
+          <tr>
+            <td>NTSCorp (NSW Native Title Services)</td>
+            <td>The representative body for native title groups in NSW. A key referral and collaboration partner for Purple Wombat.</td>
+          </tr>
+          <tr>
+            <td>Professional Trustees</td>
+            <td>Appointed initially to administer community trusts. Purple Wombat supports communities in selecting, briefing and overseeing professional trustees — and in managing the transition to community control.</td>
+          </tr>
+          <tr>
+            <td>ACNC</td>
+            <td>Registers and regulates the charitable trusts. Purple Wombat assists with registration and ongoing compliance requirements.</td>
+          </tr>
+          <tr>
+            <td>NSW Land Management Agencies</td>
+            <td>National Parks, Crown Lands, Forestry, water agencies — parties to ILUAs. Purple Wombat helps communities understand what each agency's involvement means for their rights and Country.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- WHAT WE DON'T DO (Guardrails) -->
+  <section class="section section-dark">
+    <div class="container">
+      <span class="section-label">Brand Guardrails</span>
+      <h2 class="section-heading" style="color: var(--warm-stone); max-width: 640px;">Who we are not — and why that matters.</h2>
+      <p style="color: rgba(245,240,232,0.7); font-size: 16px; max-width: 640px; margin-bottom: 0;">These are not aspirations. They are firm commitments. Every piece of Purple Wombat's work is held against these principles before it goes to community.</p>
+      <div class="guardrail-grid">
+        <div class="guardrail-block fade-up">
+          <div class="guardrail-title">We Are Not Tokenistic</div>
+          <p class="guardrail-body">Aboriginal cultural identity must be authentic and central — not decorative. We don't use the word 'reconciliation' where it means nothing, and we don't claim cultural authority we haven't earned. This work is Aboriginal-led because it has to be — not because it looks good.</p>
+        </div>
+        <div class="guardrail-block fade-up d2">
+          <div class="guardrail-title">We Are Not Preachy</div>
+          <p class="guardrail-body">We don't lecture communities about their rights. We don't lead with colonisation in contexts where it's not relevant. We demonstrate our values through action and advice — not through statements. Communities know their history. Our job is to help them build their future.</p>
+        </div>
+        <div class="guardrail-block fade-up d3">
+          <div class="guardrail-title">We Are Not Fragile or Apologetic</div>
+          <p class="guardrail-body">Purple Wombat knows what it stands for. We don't hedge our mission, soften our position to make institutional partners comfortable, or understate the significance of the work communities are facing. When confident, clear advice is what's needed, that's what we give.</p>
+        </div>
+        <div class="guardrail-block fade-up d4">
+          <div class="guardrail-title">We Are Not Corporate or Cold</div>
+          <p class="guardrail-body">We don't hide behind legal or financial jargon, treat communities as beneficiaries rather than rights-holders, or produce documents that look like bank reports. Every piece of communication is accessible, warm and written for people — not for files.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-inner">
+        <div>
+          <span class="section-label">Work with Us</span>
+          <h2 class="section-heading" style="color: var(--warm-stone); max-width: 560px;">Ready to talk to an advisor who understands both worlds?</h2>
+          <p style="color: rgba(245,240,232,0.72); font-size: 16px; max-width: 480px;">Purple Wombat offers a no-cost, no-obligation first conversation for any Aboriginal community or RNTBC navigating the NSW native title process.</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+          <a href="contact.html" class="btn btn-primary">Get in Touch</a>
+          <a href="team.html" class="btn btn-ghost">Meet the Team</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand-name">Purple Wombat</div>
+          <div class="footer-tagline">From Country. For Country.</div>
+          <p class="footer-desc">Aboriginal-led and Aboriginal-owned advisory services for NSW native title settlement, trust establishment, and community governance.</p>
+        </div>
+        <div>
+          <div class="footer-col-title">Navigate</div>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="policy.html">The Policy</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="team.html">Our Team</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">About</div>
+          <ul class="footer-links">
+            <li><a href="about.html">Mission &amp; Vision</a></li>
+            <li><a href="about.html">Our Values</a></li>
+            <li><a href="about.html">Core Commitments</a></li>
+            <li><a href="about.html">Our Ecosystem</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Contact</div>
+          <ul class="footer-links">
+            <li><a href="contact.html">Talk to Us</a></li>
+            <li><a href="mailto:hello@purplewombat.com.au">hello@purplewombat.com.au</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-acknowledgement">Purple Wombat acknowledges the Traditional Custodians of Country throughout NSW and recognises their continuing connection to land, water and community. We pay our respects to Elders past, present and emerging.</p>
+        <span class="footer-copy">© Purple Wombat 2026</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+    document.querySelector('.nav-toggle').addEventListener('click', () => document.querySelector('.nav-links').classList.toggle('open'));
+  </script>
+</body>
+</html>

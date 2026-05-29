@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Services — Purple Wombat</title>
+  <meta name="description" content="Seven advisory services for Aboriginal communities navigating NSW native title settlement, trust establishment and governance.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,300;1,500&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bush-green: #2D5016; --eucalyptus: #4A7C3F; --warm-stone: #F5F0E8;
+      --ochre: #C8860A; --bark: #6B4C2A; --wombat-purple: #5B3A8C;
+      --deep-earth: #1A1A12; --warm-mid: #4A4A3A;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Inter', -apple-system, Helvetica Neue, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--warm-stone); color: var(--deep-earth); font-family: var(--font-body); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    p { line-height: 1.7; }
+
+    /* NAV */
+    .site-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(--bush-green); display: flex; align-items: center; justify-content: space-between; padding: 0 48px; height: 72px; }
+    .nav-logo { display: flex; align-items: center; gap: 14px; color: var(--warm-stone); }
+    .nav-wombat { width: 42px; height: 28px; color: var(--wombat-purple); }
+    .nav-brand-name { font-family: var(--font-display); font-size: 22px; font-weight: 500; color: var(--warm-stone); line-height: 1; }
+    .nav-brand-sub { font-size: 9px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ochre); line-height: 1; margin-top: 5px; }
+    .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
+    .nav-links a { color: rgba(245,240,232,0.8); font-size: 12px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--ochre); }
+    .nav-links a.active { color: var(--warm-stone); }
+    .nav-cta { background: var(--ochre) !important; color: var(--deep-earth) !important; padding: 10px 22px; font-weight: 700 !important; }
+    .nav-cta:hover { background: #d99510 !important; }
+    .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; color: var(--warm-stone); }
+    @media (max-width: 900px) { .site-nav { padding: 0 24px; } .nav-links { display: none; } .nav-toggle { display: block; } .nav-links.open { display: flex; flex-direction: column; position: fixed; top: 72px; left: 0; right: 0; background: var(--bush-green); padding: 24px; gap: 20px; } }
+
+    /* LAYOUT */
+    .container { max-width: 1240px; margin: 0 auto; padding: 0 48px; }
+    @media (max-width: 768px) { .container { padding: 0 24px; } }
+    .section { padding: 100px 0; }
+    .section-dark { background: var(--deep-earth); color: var(--warm-stone); }
+    .section-green { background: var(--bush-green); color: var(--warm-stone); }
+
+    /* HERO */
+    .page-hero { min-height: 65vh; display: flex; align-items: flex-end; padding: 72px 0 0; background: linear-gradient(rgba(26,26,18,0.50), rgba(26,26,18,0.58)), url('Images/hero-services.png') center top/cover no-repeat; position: relative; overflow: hidden; }
+    .page-hero-content { padding: 0 48px 80px; max-width: 1240px; width: 100%; position: relative; z-index: 2; }
+    .page-hero-label { display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ochre); margin-bottom: 24px; }
+    .page-hero-heading { font-family: var(--font-display); font-size: clamp(48px, 8vw, 96px); font-weight: 300; line-height: 1.0; color: var(--warm-stone); letter-spacing: -0.02em; margin-bottom: 28px; }
+    .page-hero-heading em { font-style: italic; color: var(--ochre); }
+    .page-hero-desc { font-size: 18px; line-height: 1.65; color: rgba(245,240,232,0.72); max-width: 640px; }
+    .hero-shape { display: none; }
+
+    /* TYPOGRAPHY */
+    .section-label { display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ochre); margin-bottom: 16px; }
+    .section-heading { font-family: var(--font-display); font-size: clamp(30px, 4.5vw, 52px); font-weight: 500; line-height: 1.12; margin-bottom: 24px; }
+    .divider { width: 56px; height: 3px; background: var(--ochre); margin: 24px 0; }
+
+    /* BUTTONS */
+    .btn { display: inline-block; padding: 14px 28px; font-family: var(--font-body); font-size: 13px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; border: 2px solid transparent; transition: all 0.25s ease; }
+    .btn-primary { background: var(--ochre); color: var(--deep-earth); border-color: var(--ochre); }
+    .btn-primary:hover { background: #d99510; }
+    .btn-outline-stone { background: transparent; color: var(--warm-stone); border-color: rgba(245,240,232,0.45); }
+    .btn-outline-stone:hover { border-color: var(--warm-stone); }
+
+    /* SERVICE LIST (dark bg) */
+    .service-item { padding: 60px 0; border-bottom: 1px solid rgba(245,240,232,0.08); display: grid; grid-template-columns: 100px 1fr; gap: 40px; align-items: start; }
+    .service-item:last-child { border-bottom: none; }
+    .service-num { font-family: var(--font-display); font-size: 64px; font-weight: 300; color: var(--ochre); line-height: 0.9; }
+    .service-title { font-size: 22px; font-weight: 600; color: var(--warm-stone); margin-bottom: 16px; line-height: 1.3; }
+    .service-body { font-size: 15px; line-height: 1.75; color: rgba(245,240,232,0.68); max-width: 680px; }
+    .service-sub-list { list-style: none; margin-top: 20px; display: flex; flex-direction: column; gap: 10px; }
+    .service-sub-list li { font-size: 14px; line-height: 1.6; color: rgba(245,240,232,0.6); padding-left: 20px; position: relative; }
+    .service-sub-list li::before { content: '—'; position: absolute; left: 0; color: var(--ochre); font-weight: 700; }
+    .service-tag { display: inline-block; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ochre); border: 1px solid rgba(200,134,10,0.4); padding: 4px 10px; margin-bottom: 16px; }
+    @media (max-width: 768px) { .service-item { grid-template-columns: 1fr; gap: 16px; } .service-num { font-size: 48px; } }
+
+    /* HOW WE WORK */
+    .how-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    @media (max-width: 900px) { .how-grid { grid-template-columns: 1fr; gap: 40px; } }
+    .step-item { display: flex; gap: 28px; padding: 36px 0; border-bottom: 1px solid rgba(26,26,18,0.08); }
+    .step-item:last-child { border-bottom: none; }
+    .step-num { font-family: var(--font-display); font-size: 44px; font-weight: 300; color: var(--ochre); line-height: 1; flex-shrink: 0; width: 56px; }
+    .step-title { font-size: 16px; font-weight: 600; color: var(--deep-earth); margin-bottom: 8px; }
+    .step-body { font-size: 14px; line-height: 1.65; color: var(--warm-mid); }
+
+    /* CLIENTS */
+    .client-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; margin-top: 48px; }
+    @media (max-width: 768px) { .client-grid { grid-template-columns: 1fr; } }
+    .client-block { background: rgba(255,255,255,0.04); padding: 40px; }
+    .client-type { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ochre); margin-bottom: 16px; }
+    .client-title { font-family: var(--font-display); font-size: 26px; font-weight: 500; color: var(--warm-stone); margin-bottom: 16px; line-height: 1.3; }
+    .client-body { font-size: 14px; line-height: 1.7; color: rgba(245,240,232,0.65); }
+
+    /* HIGHLIGHT */
+    .highlight-bar { background: var(--ochre); padding: 48px 0; }
+    .highlight-bar p { font-family: var(--font-display); font-size: clamp(20px, 2.8vw, 32px); font-weight: 500; color: var(--deep-earth); line-height: 1.35; max-width: 900px; }
+
+    /* CTA */
+    .cta-section { background: var(--bush-green); padding: 100px 0; }
+    .cta-inner { display: grid; grid-template-columns: 1fr auto; gap: 80px; align-items: center; }
+    @media (max-width: 900px) { .cta-inner { grid-template-columns: 1fr; gap: 40px; } }
+
+    /* FOOTER */
+    .site-footer { background: var(--deep-earth); color: var(--warm-stone); padding: 80px 0 40px; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; margin-bottom: 60px; }
+    @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; } }
+    @media (max-width: 600px) { .footer-grid { grid-template-columns: 1fr; } }
+    .footer-brand-name { font-family: var(--font-display); font-size: 28px; font-weight: 500; color: var(--warm-stone); margin-bottom: 12px; }
+    .footer-tagline { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ochre); margin-bottom: 16px; }
+    .footer-desc { font-size: 14px; line-height: 1.65; color: rgba(245,240,232,0.55); max-width: 300px; }
+    .footer-col-title { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ochre); margin-bottom: 20px; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .footer-links a { font-size: 14px; color: rgba(245,240,232,0.6); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--warm-stone); }
+    .footer-bottom { border-top: 1px solid rgba(245,240,232,0.1); padding-top: 32px; display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; flex-wrap: wrap; }
+    .footer-acknowledgement { font-size: 13px; line-height: 1.65; color: rgba(245,240,232,0.45); max-width: 600px; }
+    .footer-copy { font-size: 12px; color: rgba(245,240,232,0.3); }
+
+    /* ANIMATIONS */
+    .fade-up { opacity: 0; transform: translateY(32px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .d1 { transition-delay: 0.1s; } .d2 { transition-delay: 0.2s; } .d3 { transition-delay: 0.3s; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="site-nav">
+    <a href="index.html" class="nav-logo">
+      <svg class="nav-wombat" viewBox="0 0 48 32" fill="none" stroke="white" stroke-width="1" stroke-linejoin="round">
+        <ellipse cx="20" cy="22" rx="18" ry="10" fill="currentColor"/>
+        <path d="M34 14 Q28 10 26 14 L26 22 L42 22 L44 18 Q46 14 42 12 Q38 10 34 14Z" fill="currentColor"/>
+        <path d="M30 14 Q30 8 33 7 Q36 7 36 13Z" fill="currentColor"/>
+        <path d="M37 13 Q38 8 41 8 Q44 9 43 14Z" fill="currentColor"/>
+        <rect x="8" y="28" width="6" height="4" rx="2" fill="currentColor"/>
+        <rect x="18" y="29" width="6" height="3" rx="1.5" fill="currentColor"/>
+        <rect x="30" y="28" width="6" height="4" rx="2" fill="currentColor"/>
+      </svg>
+      <div>
+        <div class="nav-brand-name">Purple Wombat</div>
+        <div class="nav-brand-sub">Aboriginal Led &amp; Owned</div>
+      </div>
+    </a>
+    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">
+      <svg width="22" height="16" viewBox="0 0 22 16" fill="none"><rect width="22" height="2" fill="currentColor"/><rect y="7" width="22" height="2" fill="currentColor"/><rect y="14" width="22" height="2" fill="currentColor"/></svg>
+    </button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="policy.html">The Policy</a></li>
+      <li><a href="services.html" class="active">Services</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="team.html">Our Team</a></li>
+      <li><a href="contact.html" class="nav-cta">Get in Touch</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="page-hero">
+    <div class="hero-shape"></div>
+    <div class="page-hero-content">
+      <span class="page-hero-label">Advisory Services</span>
+      <h1 class="page-hero-heading">Walking with you,<br><em>every step of the way.</em></h1>
+      <p class="page-hero-desc">From the first conversation about your rights, to the day your trust is running strong and your community is governing its own future — Purple Wombat is with you. Seven services, one commitment: communities know best.</p>
+    </div>
+  </section>
+
+  <!-- SERVICES LIST -->
+  <section class="section section-dark">
+    <div class="container">
+      <span class="section-label">Our Seven Services</span>
+      <h2 class="section-heading" style="color: var(--warm-stone); max-width: 680px; margin-bottom: 60px;">End-to-end support for the native title settlement process.</h2>
+
+      <div class="service-item fade-up">
+        <div class="service-num">01</div>
+        <div>
+          <span class="service-tag">Foundation</span>
+          <h3 class="service-title">Native Title Policy Navigation</h3>
+          <p class="service-body">Before any community makes a decision about opting into the new NSW Government policy, they need to understand it — properly, in plain language, in a culturally safe way. That's where we start. Purple Wombat provides community-led briefings, facilitated discussions and ongoing support so your community can make informed decisions about your options. We don't tell you what to decide. We make sure you have everything you need to decide for yourself.</p>
+          <ul class="service-sub-list">
+            <li>Plain-language briefings on the new NSW Government policy and its implications for your community</li>
+            <li>Facilitated community consultations that centre community voices</li>
+            <li>Support in understanding and responding to government consultation processes</li>
+            <li>Honest assessment of the pros and cons of opting in versus litigating</li>
+            <li>Ongoing engagement as the policy evolves</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="service-item fade-up">
+        <div class="service-num">02</div>
+        <div>
+          <span class="service-tag">Legal &amp; Structural</span>
+          <h3 class="service-title">Trust Establishment</h3>
+          <p class="service-body">Setting up a legally compliant charitable trust is one of the most consequential steps in the process. A well-structured trust protects the community's compensation for generations. A poorly structured one can create governance problems, regulatory issues, and community conflict for decades. Purple Wombat provides end-to-end support to get it right from the start.</p>
+          <ul class="service-sub-list">
+            <li>Drafting and reviewing Trust Deeds in line with NSW Government trust governance principles — perpetuity, transparency, governance accountability, transition to RNTBC control</li>
+            <li>ACNC (Australian Charities and Not-for-profits Commission) registration support</li>
+            <li>Selecting and briefing professional trustees who align with community values</li>
+            <li>Designing the transition pathway from professional trustee to RNTBC-appointed trustee</li>
+            <li>Reviewing draft deeds against community aspirations before signing</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="service-item fade-up">
+        <div class="service-num">03</div>
+        <div>
+          <span class="service-tag">Financial</span>
+          <h3 class="service-title">Investment Policy &amp; Fund Management Advisory</h3>
+          <p class="service-body">The trust needs to grow — at or above inflation — in perpetuity. That requires a clear investment strategy, appropriate asset allocation and robust oversight. Purple Wombat supports communities to develop an Investment Policy Statement that reflects both the financial requirements and the community's values, and to establish frameworks that hold trustees accountable for performance.</p>
+          <ul class="service-sub-list">
+            <li>Developing an Investment Policy Statement (IPS) tailored to the community's goals</li>
+            <li>Asset allocation advice (the Government model assumes a blended 70% conservative / 30% growth approach — we help communities understand whether this is right for them)</li>
+            <li>Trustee accountability and reporting frameworks</li>
+            <li>Independent investment performance review mechanisms</li>
+            <li>Ongoing oversight support as market conditions change</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="service-item fade-up">
+        <div class="service-num">04</div>
+        <div>
+          <span class="service-tag">Governance</span>
+          <h3 class="service-title">RNTBC Governance &amp; Capacity Building</h3>
+          <p class="service-body">The transition from professional trustee to community-controlled governance is one of the most important journeys an RNTBC undertakes. For that transition to succeed, the RNTBC needs to build genuine operational capacity — not just in governance knowledge, but in financial management, strategic planning and people. Our goal is not to create dependency on Purple Wombat — it is to build the governance, financial and strategic capacity of each community and RNTBC so they thrive independently.</p>
+          <ul class="service-sub-list">
+            <li>Board governance training tailored to RNTBC structures and CATSI Act obligations</li>
+            <li>Financial management and compliance support</li>
+            <li>Strategic planning aligned to community aspirations</li>
+            <li>Staffing structure advice — CEO, CFO, Cultural Heritage Officer, Rangers, and other roles</li>
+            <li>Cultural governance integration — ensuring decision-making reflects cultural protocols</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="service-item fade-up">
+        <div class="service-num">05</div>
+        <div>
+          <span class="service-tag">Community</span>
+          <h3 class="service-title">Community Distribution Frameworks</h3>
+          <p class="service-body">Trust income flows to community. But how it flows — who gets what, for what purposes, through what processes — matters enormously. Without a clear distribution framework, even well-funded trusts can become sources of community conflict. Purple Wombat supports communities to develop distribution policies that reflect their aspirations and values, and that are fair, transparent and culturally grounded.</p>
+          <ul class="service-sub-list">
+            <li>Community benefit distributions to native title holders — structure, frequency and eligibility</li>
+            <li>Cultural, social and economic program funding frameworks</li>
+            <li>Land and water acquisition strategies</li>
+            <li>Ranger and Country management program funding models</li>
+            <li>Intergenerational wealth frameworks — balancing present need with future capital</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="service-item fade-up">
+        <div class="service-num">06</div>
+        <div>
+          <span class="service-tag">Legal</span>
+          <h3 class="service-title">ILUA Support &amp; Negotiation Advisory</h3>
+          <p class="service-body">An Indigenous Land Use Agreement is one of the most complex and consequential documents a native title group will ever sign. Purple Wombat provides plain-language guidance on what an ILUA means — what rights you're agreeing to constrain, what benefits you should be seeking, and what protections are non-negotiable. We don't replace your lawyers, but we make sure the community understands what's on the table before anything is agreed.</p>
+          <ul class="service-sub-list">
+            <li>Plain-language ILUA briefings for community members and decision-makers</li>
+            <li>Guidance on what to negotiate for — land transfers, heritage protections, employment opportunities, commercial arrangements</li>
+            <li>Review of draft ILUAs to identify issues and gaps before signing</li>
+            <li>Support in developing the community's negotiating position</li>
+            <li>Liaison support between the community and government negotiators</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="service-item fade-up">
+        <div class="service-num">07</div>
+        <div>
+          <span class="service-tag">Advocacy</span>
+          <h3 class="service-title">Compensation Calculation Review</h3>
+          <p class="service-body">When the Government presents a compensation offer, communities have the right to scrutinise how it was calculated. The inputs — claim size, group size, aspirations budget — directly determine the lump sum offered. Purple Wombat assists communities to understand and challenge the calculation where appropriate, and supports independent assessment processes where disputes arise. You have rights. We help you exercise them.</p>
+          <ul class="service-sub-list">
+            <li>Plain-language explanation of how the Government calculated the compensation offer</li>
+            <li>Critical analysis of the inputs: claim size assumptions, group size data, aspirations budget</li>
+            <li>Identification of items that may have been omitted or undervalued</li>
+            <li>Support in preparing a community response to the Government's offer</li>
+            <li>Coordination of independent assessment processes where required</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW WE WORK -->
+  <section class="section">
+    <div class="container">
+      <div class="how-grid">
+        <div>
+          <span class="section-label">Our Approach</span>
+          <h2 class="section-heading">We walk alongside you — we don't lead you.</h2>
+          <div class="divider"></div>
+          <p style="color: var(--warm-mid); font-size: 16px; margin-bottom: 16px;">Every community is different. Every situation is unique. Purple Wombat does not arrive with pre-packaged solutions. We start by listening — understanding your community's history, your aspirations, your relationships and your concerns.</p>
+          <p style="color: var(--warm-mid); font-size: 16px; margin-bottom: 32px;">We work at the community's pace, in a culturally appropriate and trauma-informed way. Our engagement is designed around free, prior and informed consent — not project timelines or government deadlines.</p>
+          <p style="font-family: var(--font-display); font-size: clamp(18px, 2vw, 24px); font-style: italic; color: var(--bush-green); line-height: 1.5; padding-left: 28px; border-left: 3px solid var(--ochre);">"This is your money, your future, your decision. We're here to make sure you have everything you need to make the right calls — not to make them for you."</p>
+        </div>
+        <div>
+          <div class="step-item">
+            <div class="step-num">1</div>
+            <div>
+              <div class="step-title">First Conversation</div>
+              <p class="step-body">We start with listening. Understanding your community's situation, history and aspirations before any advice is offered. No cost, no obligation.</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">2</div>
+            <div>
+              <div class="step-title">Community Briefing</div>
+              <p class="step-body">Plain-language briefing with the community about the new policy, your rights and options, and what the process looks like from here.</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">3</div>
+            <div>
+              <div class="step-title">Tailored Advisory Plan</div>
+              <p class="step-body">We design a scope of work that reflects exactly what your community needs — nothing more, nothing less. Transparent fees, no hidden referrals.</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">4</div>
+            <div>
+              <div class="step-title">Walking the Process Together</div>
+              <p class="step-body">From trust establishment through to governance transition, we are with you at every step — building your capacity as we go, not creating dependency.</p>
+            </div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">5</div>
+            <div>
+              <div class="step-title">Your RNTBC, Strong and Independent</div>
+              <p class="step-body">Our measure of success is the day your community no longer needs us — because you have the governance, financial literacy and strategic confidence to lead yourselves.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO WE SERVE -->
+  <section class="section section-dark">
+    <div class="container">
+      <span class="section-label">Our Clients</span>
+      <h2 class="section-heading" style="color: var(--warm-stone); max-width: 640px;">We work with Aboriginal communities and RNTBCs across NSW.</h2>
+      <div class="client-grid">
+        <div class="client-block fade-up">
+          <div class="client-type">Primary Clients</div>
+          <h3 class="client-title">Aboriginal Communities &amp; Native Title Groups</h3>
+          <p class="client-body">Communities with existing consent determinations who have not yet settled compensation. Native title groups who have lodged (or are about to lodge) a native title claim that meets the credible evidence standard. RNTBCs seeking to build the capacity to manage trust funds and deliver on community aspirations.</p>
+        </div>
+        <div class="client-block fade-up d2">
+          <div class="client-type">Also</div>
+          <h3 class="client-title">Community Members &amp; Partner Organisations</h3>
+          <p class="client-body">Individual community members seeking to understand how the policy affects them and what distributions they may be entitled to. Community-controlled organisations that partner with RNTBCs on cultural, social and economic programs — and who want to understand how trust funding can support their work.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HIGHLIGHT -->
+  <div class="highlight-bar">
+    <div class="container">
+      <p>"Building lasting capability — not dependency. Our goal is to build the governance, financial and strategic capacity of each community and RNTBC so they can thrive independently."</p>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-inner">
+        <div>
+          <span class="section-label" style="color: var(--eucalyptus);">Work with Us</span>
+          <h2 class="section-heading" style="color: var(--warm-stone); max-width: 560px;">Ready to start the conversation?</h2>
+          <p style="color: rgba(245,240,232,0.72); font-size: 16px; max-width: 480px;">Whether you're at the very beginning of the process or already navigating negotiations, Purple Wombat can help. Get in touch for a no-cost, no-obligation first conversation.</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 16px;">
+          <a href="contact.html" class="btn btn-primary">Get in Touch</a>
+          <a href="about.html" class="btn btn-outline-stone">About Purple Wombat</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand-name">Purple Wombat</div>
+          <div class="footer-tagline">From Country. For Country.</div>
+          <p class="footer-desc">Aboriginal-led and Aboriginal-owned advisory services for NSW native title settlement, trust establishment, and community governance.</p>
+        </div>
+        <div>
+          <div class="footer-col-title">Navigate</div>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="policy.html">The Policy</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="team.html">Our Team</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Services</div>
+          <ul class="footer-links">
+            <li><a href="services.html">Policy Navigation</a></li>
+            <li><a href="services.html">Trust Establishment</a></li>
+            <li><a href="services.html">Investment Advisory</a></li>
+            <li><a href="services.html">RNTBC Governance</a></li>
+            <li><a href="services.html">Distribution Frameworks</a></li>
+            <li><a href="services.html">ILUA Support</a></li>
+            <li><a href="services.html">Compensation Review</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Contact</div>
+          <ul class="footer-links">
+            <li><a href="contact.html">Talk to Us</a></li>
+            <li><a href="mailto:hello@purplewombat.com.au">hello@purplewombat.com.au</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-acknowledgement">Purple Wombat acknowledges the Traditional Custodians of Country throughout NSW and recognises their continuing connection to land, water and community. We pay our respects to Elders past, present and emerging.</p>
+        <span class="footer-copy">© Purple Wombat 2026</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+    document.querySelector('.nav-toggle').addEventListener('click', () => document.querySelector('.nav-links').classList.toggle('open'));
+  </script>
+</body>
+</html>

@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact — Purple Wombat</title>
+  <meta name="description" content="Get in touch with Purple Wombat — Aboriginal-led advisory services for NSW native title communities.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,500;1,300;1,500&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bush-green: #2D5016; --eucalyptus: #4A7C3F; --warm-stone: #F5F0E8;
+      --ochre: #C8860A; --bark: #6B4C2A; --wombat-purple: #5B3A8C;
+      --deep-earth: #1A1A12; --warm-mid: #4A4A3A;
+      --font-display: 'Cormorant Garamond', Georgia, serif;
+      --font-body: 'Inter', -apple-system, Helvetica Neue, sans-serif;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--warm-stone); color: var(--deep-earth); font-family: var(--font-body); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    a { color: inherit; text-decoration: none; }
+    p { line-height: 1.7; }
+
+    /* NAV */
+    .site-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(--bush-green); display: flex; align-items: center; justify-content: space-between; padding: 0 48px; height: 72px; }
+    .nav-logo { display: flex; align-items: center; gap: 14px; color: var(--warm-stone); }
+    .nav-wombat { width: 42px; height: 28px; color: var(--wombat-purple); }
+    .nav-brand-name { font-family: var(--font-display); font-size: 22px; font-weight: 500; color: var(--warm-stone); line-height: 1; }
+    .nav-brand-sub { font-size: 9px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ochre); line-height: 1; margin-top: 5px; }
+    .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
+    .nav-links a { color: rgba(245,240,232,0.8); font-size: 12px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--ochre); }
+    .nav-links a.active { color: var(--warm-stone); }
+    .nav-cta { background: var(--ochre) !important; color: var(--deep-earth) !important; padding: 10px 22px; font-weight: 700 !important; }
+    .nav-cta:hover { background: #d99510 !important; }
+    .nav-toggle { display: none; background: none; border: none; cursor: pointer; padding: 8px; color: var(--warm-stone); }
+    @media (max-width: 900px) { .site-nav { padding: 0 24px; } .nav-links { display: none; } .nav-toggle { display: block; } .nav-links.open { display: flex; flex-direction: column; position: fixed; top: 72px; left: 0; right: 0; background: var(--bush-green); padding: 24px; gap: 20px; } }
+
+    /* LAYOUT */
+    .container { max-width: 1240px; margin: 0 auto; padding: 0 48px; }
+    @media (max-width: 768px) { .container { padding: 0 24px; } }
+    .section { padding: 100px 0; }
+    .section-dark { background: var(--deep-earth); color: var(--warm-stone); }
+    .section-green { background: var(--bush-green); color: var(--warm-stone); }
+
+    /* HERO */
+    .page-hero { min-height: 58vh; display: flex; align-items: flex-end; padding: 72px 0 0; background: linear-gradient(rgba(26,26,18,0.50), rgba(26,26,18,0.56)), url('Images/hero-contact.png') center/cover no-repeat; position: relative; overflow: hidden; }
+    .page-hero-content { padding: 0 48px 80px; max-width: 1240px; width: 100%; position: relative; z-index: 2; }
+    .page-hero-label { display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ochre); margin-bottom: 24px; }
+    .page-hero-heading { font-family: var(--font-display); font-size: clamp(48px, 8vw, 96px); font-weight: 300; line-height: 1.0; color: var(--warm-stone); letter-spacing: -0.02em; margin-bottom: 28px; }
+    .page-hero-heading em { font-style: italic; color: var(--ochre); }
+    .page-hero-desc { font-size: 18px; line-height: 1.65; color: rgba(245,240,232,0.72); max-width: 600px; }
+    .hero-shape, .hero-shape-2 { display: none; }
+
+    /* TYPOGRAPHY */
+    .section-label { display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ochre); margin-bottom: 16px; }
+    .section-heading { font-family: var(--font-display); font-size: clamp(30px, 4.5vw, 52px); font-weight: 500; line-height: 1.12; margin-bottom: 24px; }
+    .divider { width: 56px; height: 3px; background: var(--ochre); margin: 24px 0; }
+
+    /* CONTACT MAIN GRID */
+    .contact-main { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+    @media (max-width: 900px) { .contact-main { grid-template-columns: 1fr; gap: 56px; } }
+
+    /* FORM */
+    .form-group { margin-bottom: 20px; }
+    .form-label { display: block; font-size: 11px; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase; color: var(--warm-mid); margin-bottom: 8px; }
+    .form-input, .form-textarea, .form-select {
+      width: 100%; background: rgba(26,26,18,0.05); border: 1.5px solid rgba(26,26,18,0.2);
+      padding: 14px 16px; font-family: var(--font-body); font-size: 15px; color: var(--deep-earth);
+      transition: border-color 0.2s; outline: none; appearance: none;
+    }
+    .form-input:focus, .form-textarea:focus, .form-select:focus { border-color: var(--ochre); background: rgba(200,134,10,0.04); }
+    .form-input::placeholder, .form-textarea::placeholder { color: rgba(74,74,58,0.5); }
+    .form-textarea { height: 160px; resize: vertical; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    @media (max-width: 600px) { .form-row { grid-template-columns: 1fr; } }
+
+    /* BUTTONS */
+    .btn { display: inline-block; padding: 16px 32px; font-family: var(--font-body); font-size: 13px; font-weight: 700; letter-spacing: 0.05em; text-transform: uppercase; border: 2px solid transparent; transition: all 0.25s ease; cursor: pointer; }
+    .btn-primary { background: var(--ochre); color: var(--deep-earth); border-color: var(--ochre); }
+    .btn-primary:hover { background: #d99510; }
+    .btn-ghost { background: transparent; color: var(--warm-stone); border-color: rgba(245,240,232,0.45); }
+    .btn-ghost:hover { border-color: var(--warm-stone); }
+    .btn-block { width: 100%; text-align: center; }
+
+    /* CONTACT INFO */
+    .contact-info-item { padding: 28px 0; border-bottom: 1px solid rgba(26,26,18,0.1); }
+    .contact-info-item:first-child { border-top: 1px solid rgba(26,26,18,0.1); }
+    .contact-info-label { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ochre); margin-bottom: 8px; }
+    .contact-info-value { font-size: 16px; color: var(--deep-earth); font-weight: 500; }
+    .contact-info-note { font-size: 13px; color: var(--warm-mid); margin-top: 4px; }
+
+    /* WHO WE SERVE */
+    .serve-blocks { display: flex; flex-direction: column; gap: 3px; margin-top: 40px; }
+    .serve-block { background: rgba(26,26,18,0.04); padding: 28px 32px; border-left: 3px solid transparent; }
+    .serve-block:nth-child(1) { border-left-color: var(--ochre); }
+    .serve-block:nth-child(2) { border-left-color: var(--eucalyptus); }
+    .serve-block:nth-child(3) { border-left-color: var(--wombat-purple); }
+    .serve-block-title { font-size: 15px; font-weight: 600; color: var(--deep-earth); margin-bottom: 8px; }
+    .serve-block-body { font-size: 14px; line-height: 1.6; color: var(--warm-mid); }
+
+    /* PROMISE SECTION */
+    .promise-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 3px; margin-top: 48px; }
+    @media (max-width: 900px) { .promise-grid { grid-template-columns: 1fr; } }
+    .promise-block { background: rgba(255,255,255,0.04); padding: 40px 36px; border-top: 3px solid rgba(200,134,10,0.4); }
+    .promise-icon { font-family: var(--font-display); font-size: 44px; font-weight: 300; color: var(--ochre); line-height: 0.9; margin-bottom: 16px; }
+    .promise-title { font-size: 16px; font-weight: 600; color: var(--warm-stone); margin-bottom: 12px; }
+    .promise-body { font-size: 14px; line-height: 1.7; color: rgba(245,240,232,0.65); }
+
+    /* ACKNOWLEDGEMENT SECTION */
+    .ack-section { background: var(--deep-earth); padding: 72px 0; }
+    .ack-inner { max-width: 800px; }
+    .ack-label { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ochre); margin-bottom: 20px; display: block; }
+    .ack-text { font-family: var(--font-display); font-size: clamp(18px, 2.5vw, 26px); font-weight: 300; font-style: italic; color: var(--warm-stone); line-height: 1.55; }
+
+    /* SUCCESS MESSAGE */
+    .form-success { display: none; background: rgba(74,124,63,0.15); border: 2px solid var(--eucalyptus); padding: 24px 28px; margin-top: 20px; }
+    .form-success-title { font-size: 16px; font-weight: 600; color: var(--bush-green); margin-bottom: 8px; }
+    .form-success-body { font-size: 14px; color: var(--warm-mid); }
+
+    /* FOOTER */
+    .site-footer { background: var(--deep-earth); color: var(--warm-stone); padding: 80px 0 40px; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 60px; margin-bottom: 60px; }
+    @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px; } }
+    @media (max-width: 600px) { .footer-grid { grid-template-columns: 1fr; } }
+    .footer-brand-name { font-family: var(--font-display); font-size: 28px; font-weight: 500; color: var(--warm-stone); margin-bottom: 12px; }
+    .footer-tagline { font-size: 12px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ochre); margin-bottom: 16px; }
+    .footer-desc { font-size: 14px; line-height: 1.65; color: rgba(245,240,232,0.55); max-width: 300px; }
+    .footer-col-title { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ochre); margin-bottom: 20px; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+    .footer-links a { font-size: 14px; color: rgba(245,240,232,0.6); text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--warm-stone); }
+    .footer-bottom { border-top: 1px solid rgba(245,240,232,0.1); padding-top: 32px; display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; flex-wrap: wrap; }
+    .footer-acknowledgement { font-size: 13px; line-height: 1.65; color: rgba(245,240,232,0.45); max-width: 600px; }
+    .footer-copy { font-size: 12px; color: rgba(245,240,232,0.3); }
+
+    /* ANIMATIONS */
+    .fade-up { opacity: 0; transform: translateY(32px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+    .d1 { transition-delay: 0.1s; } .d2 { transition-delay: 0.2s; } .d3 { transition-delay: 0.3s; }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="site-nav">
+    <a href="index.html" class="nav-logo">
+      <svg class="nav-wombat" viewBox="0 0 48 32" fill="none" stroke="white" stroke-width="1" stroke-linejoin="round">
+        <ellipse cx="20" cy="22" rx="18" ry="10" fill="currentColor"/>
+        <path d="M34 14 Q28 10 26 14 L26 22 L42 22 L44 18 Q46 14 42 12 Q38 10 34 14Z" fill="currentColor"/>
+        <path d="M30 14 Q30 8 33 7 Q36 7 36 13Z" fill="currentColor"/>
+        <path d="M37 13 Q38 8 41 8 Q44 9 43 14Z" fill="currentColor"/>
+        <rect x="8" y="28" width="6" height="4" rx="2" fill="currentColor"/>
+        <rect x="18" y="29" width="6" height="3" rx="1.5" fill="currentColor"/>
+        <rect x="30" y="28" width="6" height="4" rx="2" fill="currentColor"/>
+      </svg>
+      <div>
+        <div class="nav-brand-name">Purple Wombat</div>
+        <div class="nav-brand-sub">Aboriginal Led &amp; Owned</div>
+      </div>
+    </a>
+    <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">
+      <svg width="22" height="16" viewBox="0 0 22 16" fill="none"><rect width="22" height="2" fill="currentColor"/><rect y="7" width="22" height="2" fill="currentColor"/><rect y="14" width="22" height="2" fill="currentColor"/></svg>
+    </button>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="policy.html">The Policy</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="team.html">Our Team</a></li>
+      <li><a href="contact.html" class="nav-cta active">Get in Touch</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="page-hero">
+    <div class="hero-shape"></div>
+    <div class="hero-shape-2"></div>
+    <div class="page-hero-content">
+      <span class="page-hero-label">Start the Conversation</span>
+      <h1 class="page-hero-heading">Let's talk.<br><em>No cost. No obligation.</em></h1>
+      <p class="page-hero-desc">Whether your community is at the very beginning of the native title process or already deep in negotiations, Purple Wombat offers a first conversation at no cost and no obligation. We start by listening.</p>
+    </div>
+  </section>
+
+  <!-- CONTACT MAIN -->
+  <section class="section">
+    <div class="container">
+      <div class="contact-main">
+        <!-- FORM -->
+        <div>
+          <span class="section-label">Send Us a Message</span>
+          <h2 class="section-heading" style="margin-bottom: 32px;">We'd love to hear from your community.</h2>
+          <form id="contactForm" onsubmit="handleSubmit(event)" novalidate>
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="firstName">First Name *</label>
+                <input class="form-input" type="text" id="firstName" name="firstName" placeholder="Your first name" required>
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="lastName">Last Name *</label>
+                <input class="form-input" type="text" id="lastName" name="lastName" placeholder="Your last name" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="community">Community or Organisation *</label>
+              <input class="form-input" type="text" id="community" name="community" placeholder="Your community, RNTBC or organisation name" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="email">Email Address *</label>
+              <input class="form-input" type="email" id="email" name="email" placeholder="your@email.com" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="phone">Phone (optional)</label>
+              <input class="form-input" type="tel" id="phone" name="phone" placeholder="Your phone number">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="topic">What would you like to talk about? *</label>
+              <select class="form-select" id="topic" name="topic" required>
+                <option value="" disabled selected>Select a topic...</option>
+                <option value="policy">Understanding the new NSW native title policy</option>
+                <option value="trust">Trust establishment and governance</option>
+                <option value="investment">Investment policy and fund management</option>
+                <option value="rntbc">RNTBC governance and capacity building</option>
+                <option value="distribution">Community distribution frameworks</option>
+                <option value="ilua">ILUA support and negotiation</option>
+                <option value="compensation">Compensation calculation review</option>
+                <option value="general">General enquiry</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="message">Tell us about your situation *</label>
+              <textarea class="form-textarea" id="message" name="message" placeholder="What's your community's current situation? What questions do you have? What would be most helpful to talk through? Share as much or as little as you like." required></textarea>
+            </div>
+            <div class="form-group" style="display: flex; align-items: flex-start; gap: 12px;">
+              <input type="checkbox" id="consent" name="consent" required style="margin-top: 3px; flex-shrink: 0; accent-color: var(--ochre);">
+              <label for="consent" style="font-size: 13px; line-height: 1.55; color: var(--warm-mid);">I understand this enquiry is for an initial conversation only, and Purple Wombat will be in contact to arrange a time to talk. I give consent for my information to be used to respond to this enquiry.</label>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Send Your Enquiry</button>
+            <div class="form-success" id="formSuccess">
+              <div class="form-success-title">Thank you — we'll be in touch soon.</div>
+              <p class="form-success-body">We've received your message and someone from Purple Wombat will contact you within 2 business days to arrange a time to talk. We look forward to hearing about your community.</p>
+            </div>
+          </form>
+        </div>
+
+        <!-- INFO -->
+        <div>
+          <span class="section-label">Our Commitment to You</span>
+          <p style="font-family: var(--font-display); font-size: clamp(20px, 2.5vw, 28px); font-style: italic; font-weight: 300; color: var(--bush-green); line-height: 1.5; padding-left: 28px; border-left: 4px solid var(--ochre); margin-bottom: 48px;">"We start by listening — understanding your community's situation before any advice is offered. No cost, no obligation."</p>
+
+          <div class="contact-info-item">
+            <div class="contact-info-label">Email</div>
+            <div class="contact-info-value"><a href="mailto:hello@purplewombat.com.au" style="color: var(--ochre); text-decoration: underline;">hello@purplewombat.com.au</a></div>
+            <div class="contact-info-note">We respond to all enquiries within 2 business days</div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-label">Location</div>
+            <div class="contact-info-value">New South Wales, Australia</div>
+            <div class="contact-info-note">We work with communities and RNTBCs across the whole of NSW — we come to you</div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-label">First Conversation</div>
+            <div class="contact-info-value">No cost. No obligation.</div>
+            <div class="contact-info-note">Our first conversation with any community is free. We want to understand your situation before you commit to anything.</div>
+          </div>
+          <div class="contact-info-item">
+            <div class="contact-info-label">Languages</div>
+            <div class="contact-info-value">English</div>
+            <div class="contact-info-note">We work to ensure our communication is accessible to all community members, including through plain-language materials and in-person community sessions</div>
+          </div>
+
+          <div style="margin-top: 48px;">
+            <div class="section-label">Who We Work With</div>
+            <div class="serve-blocks">
+              <div class="serve-block">
+                <div class="serve-block-title">Aboriginal communities &amp; native title groups</div>
+                <p class="serve-block-body">With existing consent determinations seeking to settle compensation, or groups lodging a native title claim.</p>
+              </div>
+              <div class="serve-block">
+                <div class="serve-block-title">Registered Native Title Body Corporates (RNTBCs)</div>
+                <p class="serve-block-body">Seeking trust establishment support, governance capacity building, or investment advisory services.</p>
+              </div>
+              <div class="serve-block">
+                <div class="serve-block-title">Individual community members</div>
+                <p class="serve-block-body">Who want to understand how the new policy affects them and what distributions they may be entitled to.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT TO EXPECT -->
+  <section class="section section-dark">
+    <div class="container">
+      <span class="section-label">What to Expect</span>
+      <h2 class="section-heading" style="color: var(--warm-stone); max-width: 600px;">We never rush a community. Here's how we work.</h2>
+      <div class="promise-grid">
+        <div class="promise-block fade-up">
+          <div class="promise-icon">01</div>
+          <h3 class="promise-title">We Start With Listening</h3>
+          <p class="promise-body">Our first conversation is about understanding your community — your history, your situation, your aspirations and your concerns. We don't lead with advice. We lead with questions. No judgement, no pressure, no assumptions.</p>
+        </div>
+        <div class="promise-block fade-up d2">
+          <div class="promise-icon">02</div>
+          <h3 class="promise-title">We Work at Your Pace</h3>
+          <p class="promise-body">We don't drive the timeline — your community does. Some communities want to move quickly; others need more time to consult internally before making decisions. Both are right. We adapt to what works for you.</p>
+        </div>
+        <div class="promise-block fade-up d3">
+          <div class="promise-icon">03</div>
+          <h3 class="promise-title">Transparent Fees, Always</h3>
+          <p class="promise-body">Before any paid work begins, we will give you a clear scope of services and a transparent fee structure. No surprises. No conflicts of interest. No referral fees to third parties. Our only interest is yours.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACKNOWLEDGEMENT -->
+  <section class="ack-section">
+    <div class="container">
+      <div class="ack-inner">
+        <span class="ack-label">Acknowledgement of Country</span>
+        <p class="ack-text">Purple Wombat acknowledges the Traditional Custodians of Country throughout New South Wales and recognises their continuing connection to land, water and community. We pay our respects to Elders past, present and emerging. This acknowledgement is not a box-tick — it reflects who we are and why we exist.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand-name">Purple Wombat</div>
+          <div class="footer-tagline">From Country. For Country.</div>
+          <p class="footer-desc">Aboriginal-led and Aboriginal-owned advisory services for NSW native title settlement, trust establishment, and community governance.</p>
+        </div>
+        <div>
+          <div class="footer-col-title">Navigate</div>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="policy.html">The Policy</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="team.html">Our Team</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Services</div>
+          <ul class="footer-links">
+            <li><a href="services.html">Policy Navigation</a></li>
+            <li><a href="services.html">Trust Establishment</a></li>
+            <li><a href="services.html">Investment Advisory</a></li>
+            <li><a href="services.html">RNTBC Governance</a></li>
+            <li><a href="services.html">ILUA Support</a></li>
+          </ul>
+        </div>
+        <div>
+          <div class="footer-col-title">Contact</div>
+          <ul class="footer-links">
+            <li><a href="contact.html">Get in Touch</a></li>
+            <li><a href="mailto:hello@purplewombat.com.au">hello@purplewombat.com.au</a></li>
+          </ul>
+          <div style="margin-top: 32px;">
+            <div class="footer-col-title">Proud to be</div>
+            <p style="font-size: 14px; color: rgba(245,240,232,0.6); line-height: 1.7;">Aboriginal Led<br>Aboriginal Owned<br>NSW Based</p>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p class="footer-acknowledgement">Purple Wombat acknowledges the Traditional Custodians of Country throughout NSW and recognises their continuing connection to land, water and community. We pay our respects to Elders past, present and emerging.</p>
+        <span class="footer-copy">© Purple Wombat 2026</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+    document.querySelector('.nav-toggle').addEventListener('click', () => document.querySelector('.nav-links').classList.toggle('open'));
+
+    function handleSubmit(e) {
+      e.preventDefault();
+      const form = document.getElementById('contactForm');
+      const success = document.getElementById('formSuccess');
+      // Simulate form submission
+      const btn = form.querySelector('button[type="submit"]');
+      btn.textContent = 'Sending...';
+      btn.disabled = true;
+      setTimeout(() => {
+        btn.style.display = 'none';
+        success.style.display = 'block';
+        form.scrollIntoView({ behavior: 'smooth', block: 'end' });
+      }, 1200);
+    }
+  </script>
+</body>
+</html>
