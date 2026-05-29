@@ -17,8 +17,8 @@
       --font-body: 'Inter', -apple-system, Helvetica Neue, sans-serif;
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body { background: var(--warm-stone); color: var(--deep-earth); font-family: var(--font-body); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
+    body { background: var(--warm-stone); color: var(--deep-earth); font-family: var(--font-body); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; overflow-x: hidden; }
     a { color: inherit; text-decoration: none; }
     p { line-height: 1.7; }
 
@@ -99,7 +99,8 @@
     .independence-bar p { font-family: var(--font-display); font-size: clamp(20px, 2.8vw, 32px); font-weight: 500; color: var(--deep-earth); line-height: 1.35; max-width: 920px; }
 
     /* STAKEHOLDERS */
-    .stakeholder-table { width: 100%; border-collapse: collapse; margin-top: 40px; }
+    .stakeholder-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin-top: 40px; }
+    .stakeholder-table { width: 100%; border-collapse: collapse; min-width: 560px; }
     .stakeholder-table th { background: var(--bush-green); color: var(--ochre); font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 14px 20px; text-align: left; }
     .stakeholder-table td { padding: 16px 20px; font-size: 14px; line-height: 1.55; border-bottom: 1px solid rgba(26,26,18,0.08); color: var(--warm-mid); vertical-align: top; }
     .stakeholder-table tr:nth-child(even) td { background: rgba(26,26,18,0.03); }
@@ -289,7 +290,7 @@
       <h2 class="section-heading" style="max-width: 600px;">The system Purple Wombat operates within — and the relationships that matter.</h2>
       <div class="divider"></div>
       <p style="color: var(--warm-mid); font-size: 16px; max-width: 660px; margin-bottom: 0;">Understanding who's who in the native title process is half the battle. Purple Wombat helps communities navigate this ecosystem — knowing when to engage, who has authority, and where to push back.</p>
-      <table class="stakeholder-table">
+      <div class="stakeholder-wrap"><table class="stakeholder-table">
         <thead>
           <tr><th>Stakeholder</th><th>Relationship to Communities</th></tr>
         </thead>
@@ -327,7 +328,7 @@
             <td>National Parks, Crown Lands, Forestry, water agencies — parties to ILUAs. Purple Wombat helps communities understand what each agency's involvement means for their rights and Country.</td>
           </tr>
         </tbody>
-      </table>
+      </table></div>
     </div>
   </section>
 
